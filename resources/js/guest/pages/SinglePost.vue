@@ -8,7 +8,7 @@
         <h3>Titolo: {{post.title}}</h3>
         <p>Content: {{post.content}}</p>
         <p>Category: {{post.category ? post.category.name : '-'}}</p>
-        <p v-if="post.tags.length != 0">
+        <p v-if="post.tags && post.tags.length > 0">
             Tags:
             <span v-for="(tag, index) in post.tags" :key="index">{{' - ' + tag.name}}</span>
         </p>
@@ -31,10 +31,10 @@ export default {
             axios.get(`/api/posts/${this.$route.params.slug}`)
             .then(apiResponse => {
                 this.post = apiResponse.data;
-                console.log(this.post);
                 })
             .catch(() => {
                 console.log('error');
+                this.$router.push({name: 'page-404'});
             });
         }  
     },
@@ -61,6 +61,7 @@ export default {
     background: rgb(218, 218, 218);
     img {
         width: 100%;
+        height: 100%;
     }
 }
 

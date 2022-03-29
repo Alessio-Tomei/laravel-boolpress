@@ -38,7 +38,7 @@ export default {
             });
         }  
     },
-    mounted() {
+    created() {
         this.getPosts();
     }
 }
@@ -66,6 +66,7 @@ export default {
     background: rgb(218, 218, 218);
     img {
         width: 100%;
+        height: 100%;
     }
 }
 
